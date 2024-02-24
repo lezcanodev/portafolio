@@ -22,9 +22,9 @@ function App() {
           `}
         />
       <Header/>
-      <SectionHome/>
-      <SectionTecnologies/>
-      <SectionProjects/>
+      <SectionHome id={'sectionHome'}/>
+      <SectionTecnologies id={'sectionTecnologies'}/>
+      <SectionProjects id={'sectionProjects'}/>
     </>
   )
 }

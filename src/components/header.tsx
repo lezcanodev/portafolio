@@ -6,8 +6,8 @@ export default function Header(){
       padding: 0px 10px;
     `}>
         <nav css={css`
-          background-color: rgba(59, 131, 246, 0.422);
-          box-shadow: 0 0 100px rgba(59, 130, 246, .5);
+          background-color: rgba(59, 131, 246, 0.767);
+          box-shadow: 0 0 100px rgba(59, 131, 246, 0.774);
           color: #eaeaea;
           display: flex;
           gap: 10px;
@@ -24,21 +24,20 @@ export default function Header(){
           }
         `}>
           <div>
-            <a href="">
+            <a href="#sectionHome">
               Inicio
             </a>
           </div>
           <div>
-            <a href="">
+            <a href="#sectionProjects">
               Proyectos
             </a>
           </div>
           <div>
-            <a href="">
+            <a href="#sectionTecnologies">
               Tecnologías
             </a>
           </div>
-
         </nav>
     </header>
   }

@@ -1,6 +1,7 @@
 import { css } from '@emotion/react';
 import GithubIcon from '../assets/github.svg';
 
+
 export interface ProjectProps{
     title: string;
     image: string;
@@ -69,8 +70,8 @@ export function Project(props: ProjectProps){
                             border-radius: 5px;
                         }    
                     `}>
-                        {props.tecnologyNames.map(name => (
-                            <span>{name}</span>
+                        {props.tecnologyNames.map((name) => (
+                            <span key={`${props.title}${name}`}>{name}</span>
                         ))}
                     </div>
                 </div>
@@ -103,7 +104,7 @@ export function Project(props: ProjectProps){
                         object-fit:cover;
                     }
                 `}>
-                    <a href="">
+                    <a href={props.linkGithub} target='_blank'>
                         <img src={GithubIcon} alt="" />
                     </a>
                 </div>
@@ -143,7 +144,7 @@ export function Project(props: ProjectProps){
                         <h5 css={css`margin-bottom:15px; font-size:1.4em; color: #eaeaea; `}>Características</h5>
                         <ul>
                             {props.features.map(feature => (
-                                <li>{feature}</li>
+                                <li key={`${props.title}${feature}`}>{feature}</li>
                             ))}
                         </ul>
                     </div>

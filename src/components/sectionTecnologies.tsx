@@ -50,8 +50,8 @@ const lastTecnologies: any = [
     icon: PythonSVG}
 ]
 
-export default function SectionTecnologies(){
-    return <SectionPortafolio>
+export default function SectionTecnologies({id}: {id: string}){
+    return <SectionPortafolio id={id}>
                 <SectionPortafolio.Header>
                     Tecnologías
                 </SectionPortafolio.Header>

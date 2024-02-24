@@ -12,33 +12,33 @@ import BankingImage from '../assets/banking.png';
 import MenuImage from '../assets/menu.png';
 import { useState } from 'react';
 
-
+const languagesNames = ['Todos', 'Javascript', 'Typescript', 'Php', 'Java'];
 
 const dataProjects: ProjectProps[] = [
     {title: 'Todolist',
     image:TodolistImage ,
-    linkGithub: '',
+    linkGithub: 'https://github.com/lezcanodev/todolist',
     shortDescription:'App para registro de tareas y objectivos',
-    tecnologyNames: ['Express', 'Mongoose', 'Mongodb' ,'React'],
+    tecnologyNames: ['Express', 'Mongoose', 'Mongodb' ,'React', 'Javascript'],
     features: ['Autenticación con JWT','Operaciones CRUD para las tareas','Cada tarea puede tener uno o mas objectivos','Operaciones de busqueda, filtros y ordenacion','Carga de tareas con infinite scrolling']
     },
     {title: 'React',
      image: PokeApiImage,
-     linkGithub: '',
+     linkGithub: 'https://github.com/lezcanodev/pokeapi-spa-react-app',
      shortDescription:'App de React interactuando con una API RESTFUL',
-     tecnologyNames: ['React', 'PokeApi'],
+     tecnologyNames: ['React','Javascript', 'PokeApi'],
      features: ['Filtrar elementos por sus atributos', 'Busqueda de elementos', 'Guardado de elementos']
     },
     {title: 'Leaderboard',
     image: LeadboradImage,
-    linkGithub: '',
+    linkGithub: 'https://github.com/lezcanodev/leaderboard',
     shortDescription:'App con SSR con Ejs',
     tecnologyNames: ['Postgres', 'Express', 'Typescript', 'Typeorm', 'Ejs'],
     features: ['Uso de una funcion window (sql) para obtener las competiciones con todos sus ganadores']
    },
    {title: 'Eccomerce API',
    image: EccomerceImage,
-   linkGithub: '',
+   linkGithub: 'https://github.com/lezcanodev/eccomerce',
    shortDescription:'REST API de un eccomerce + un frontend simple con react',
    tecnologyNames: ['Postgres', 'Express', 'Typescript', 'Typeorm', 'React'],
    features: [
@@ -51,7 +51,7 @@ const dataProjects: ProjectProps[] = [
   },
   {title: 'Router Php',
   image: RouterImage,
-  linkGithub: '',
+  linkGithub: 'https://github.com/lezcanodev/SIMPLE-PHP-ROUTER',
   shortDescription:'Router para manejar peticiones HTTP',
   tecnologyNames: ['Php'],
   features: [
@@ -63,9 +63,9 @@ const dataProjects: ProjectProps[] = [
  },
  {title: 'Sistema de inventario simple',
  image: InventoryImage,
- linkGithub: '',
+ linkGithub: 'https://github.com/lezcanodev/Simple-inventory-managent-system-Laravel',
  shortDescription:'Sistema de inventario simple hecho en laravel',
- tecnologyNames: ['Laravel', 'Mysql', 'CSS/Boostrap'],
+ tecnologyNames: ['Laravel','Php', 'Mysql', 'CSS/Boostrap'],
  features: [
    'Sistema de registro',
    'Sistema de session con cookies',
@@ -74,7 +74,7 @@ const dataProjects: ProjectProps[] = [
   ]},
   {title: 'Arquitectura limpia',
   image: CleanImage,
-  linkGithub: '',
+  linkGithub: 'https://github.com/lezcanodev/Typescript-Clean-Architecture',
   shortDescription:'Mi intento de implemention de un arquitectura limpia',
   tecnologyNames: ['Typescript'],
   features: [
@@ -85,7 +85,7 @@ const dataProjects: ProjectProps[] = [
    ]},
    {title: 'Simulador web banking',
    image: BankingImage,
-   linkGithub: '',
+   linkGithub: 'https://github.com/lezcanodev/SimuladorWebBanking---POO',
    shortDescription:'Proyecto de universidad',
    tecnologyNames: ['Java'],
    features: [
@@ -95,7 +95,7 @@ const dataProjects: ProjectProps[] = [
     ]},
     {title: 'Menu',
     image: MenuImage,
-    linkGithub: '',
+    linkGithub: 'https://github.com/lezcanodev/Restaurante',
     shortDescription:'Proyecto frontend',
     tecnologyNames: ['Html5', 'Tailwinds', 'react'],
     features: [
@@ -103,23 +103,62 @@ const dataProjects: ProjectProps[] = [
      ]},
 ]
 
-export default function SectionProjects(){
+export default function SectionProjects({id}: {id: string}){
 
     const [projects, setProjects] = useState(dataProjects);
 
-    return <SectionPortafolio fullWidth={true} >
+    const handleClickLenguageName = (e: React.MouseEvent) => {
+      const target = e.target;
+      if(target instanceof HTMLDivElement){
+        const lenguageName = target.dataset.lenguagename;
+        if(typeof lenguageName === 'undefined') return;
+        const newProjects = lenguageName === 'Todos' ? dataProjects : dataProjects.filter(lg => lg.tecnologyNames.includes(lenguageName));
+        setProjects(newProjects);
+      }
+    }
+
+    return <SectionPortafolio fullWidth={true} id={id} >
                 <SectionPortafolio.Header>
                     Proyectos
                 </SectionPortafolio.Header>
+                <div onClick={handleClickLenguageName} css={css`
+                  display: flex;
+                  flex-wrap: wrap;
+                  justify-content:center;
+                  gap:10px;
+                  max-width: 600px;
+                  margin:auto;
+                  margin-top: 20px;
+                  & > div{
+                    cursor: pointer;
+                    width: 85px;
+                    padding: 4px 10px;
+                    color: #3b82f6;
+                    border: 1px solid #eaeaea66;
+                    background-color: #eaeaea;
+                    border-radius: 8px;
+                    text-align:center;
+                  }
+                `}>
+                  {languagesNames.map((lenguageName) => (
+                    <div key={`lenguageName-${lenguageName}`} data-lenguagename={lenguageName}>
+                      {lenguageName}
+                    </div>
+                  ))}
+                </div>
                 <div css={css`margin-top:50px;`}>
+                    <div css={css`margin:auto; padding: 10px 60px; text-align:center;`}>
+                      resultados: {projects.length}
+                    </div>
                     <div css={css`
                         display:flex;
                         flex-wrap: wrap;
                         justify-content: center;
                         gap:15px;
                     `}>
-                        {projects.map(project => (
+                        {projects.map((project) => (
                             <Project
+                                key={`project-${project.title}`}
                                 {...project}
                             />
                         ))}

@@ -12,9 +12,9 @@ SectionPortafolio.Header = ({children}: PropChildren) => {
     </div>
 }
 
-export default function SectionPortafolio(props: PropChildren & {fullWidth?:boolean}){
+export default function SectionPortafolio(props: PropChildren & {fullWidth?:boolean, id: string;}){
     return <>
-        <section css={css({
+        <section id={props.id} css={css({
             maxWidth: (typeof props.fullWidth !== 'undefined' && props.fullWidth) ? 'auto' : 800,
             margin:'auto',
             padding: '10px 10px',
