@@ -58,7 +58,7 @@ export default function SectionTecnologies({id}: {id: string}){
                 <div css={css`margin-top:50px;`}>
                     <div css={css`
                         display:grid;
-                        gap:50px;
+                        gap:20px;
                     `}>
                         <div>
                             <div css={css`margin-bottom:20px;`}>

@@ -11,6 +11,9 @@ function App() {
     <>
         <Global
           styles={css`
+            html {
+              scroll-behavior: smooth;
+            }
             body{
               background: #0c183a;
               background: linear-gradient(to bottom, #001427, #050e2b);

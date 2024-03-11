@@ -10,11 +10,22 @@ import InventoryImage from '../assets/inventory.png';
 import CleanImage from '../assets/clean.jpg';
 import BankingImage from '../assets/banking.png';
 import MenuImage from '../assets/menu.png';
+import AppReservaImage from '../assets/appreserva.png';
 import { useState } from 'react';
 
 const languagesNames = ['Todos', 'Javascript', 'Typescript', 'Php', 'Java'];
 
 const dataProjects: ProjectProps[] = [
+    {title: 'App Reserva',
+    image: AppReservaImage,
+    linkGithub: 'https://github.com/lezcanodev/app-reserva',
+    shortDescription:'App simple para registrar reservas',
+    tecnologyNames: ['Express', 'Mysql', 'Typeorm', 'Typescript', 'React'],
+    features: [
+      'Recursos: persona, habitacion, reserva',
+      'CRUD para cada recurso',
+      'testing del backend con jest, supertest'
+    ]},
     {title: 'Todolist',
     image:TodolistImage ,
     linkGithub: 'https://github.com/lezcanodev/todolist',
@@ -29,6 +40,46 @@ const dataProjects: ProjectProps[] = [
      tecnologyNames: ['React','Javascript', 'PokeApi'],
      features: ['Filtrar elementos por sus atributos', 'Busqueda de elementos', 'Guardado de elementos']
     },
+    {title: 'Simulador web banking',
+    image: BankingImage,
+    linkGithub: 'https://github.com/lezcanodev/SimuladorWebBanking---POO',
+    shortDescription:'Proyecto de universidad',
+    tecnologyNames: ['Java'],
+    features: [
+      'El objetivo de la app es el diseño y analisis orientado a objetos',
+      `Para realizar la app primero se realizo un analisis el cual se represento con un diagramas de caso de uso, luego
+       se realizo un diagrama orientado a objetos antes del desarrollo de la app`,
+     ]},
+     {title: 'Menu',
+     image: MenuImage,
+     linkGithub: 'https://github.com/lezcanodev/Restaurante',
+     shortDescription:'Proyecto frontend',
+     tecnologyNames: ['Html5', 'Tailwinds', 'react'],
+     features: [
+       'App hecha mayormente con html5 y tailwinds, react solo se utiliza en la seccion de comidas',
+      ]},
+    {title: 'Sistema de inventario simple',
+    image: InventoryImage,
+    linkGithub: 'https://github.com/lezcanodev/Simple-inventory-managent-system-Laravel',
+    shortDescription:'Sistema de inventario simple hecho en laravel',
+    tecnologyNames: ['Laravel','Php', 'Mysql', 'CSS/Boostrap'],
+    features: [
+      'Sistema de registro',
+      'Sistema de session con cookies',
+      'Incluye 5 modulos: Producto, Proveedor, Categoría, Usuario, Roles',
+      'El administrador puede crear roles y asignarles las operaciones que tendran permitido',
+    ]},
+    {title: 'Arquitectura limpia',
+    image: CleanImage,
+    linkGithub: 'https://github.com/lezcanodev/Typescript-Clean-Architecture',
+    shortDescription:'Mi intento de implemention de un arquitectura limpia',
+    tecnologyNames: ['Typescript'],
+    features: [
+      'Aplicacion de los principios SOLID',
+      'App desarrollada con un enfoque que los frameworks, base de datos, etc son solo detalles',
+      'Las capas de aplicacion y dominio son encargadas de la logica de negocio y casos de uso',
+      'Los casos de uso solo dependen de abstraciones para evitar acoplamiento a una implementacion',
+     ]},
     {title: 'Leaderboard',
     image: LeadboradImage,
     linkGithub: 'https://github.com/lezcanodev/leaderboard',
@@ -60,47 +111,7 @@ const dataProjects: ProjectProps[] = [
     'Añadir middlewares',
     'Añadir alias o nombres a las rutas',
    ]
- },
- {title: 'Sistema de inventario simple',
- image: InventoryImage,
- linkGithub: 'https://github.com/lezcanodev/Simple-inventory-managent-system-Laravel',
- shortDescription:'Sistema de inventario simple hecho en laravel',
- tecnologyNames: ['Laravel','Php', 'Mysql', 'CSS/Boostrap'],
- features: [
-   'Sistema de registro',
-   'Sistema de session con cookies',
-   'Incluye 5 modulos: Producto, Proveedor, Categoría, Usuario, Roles',
-   'El administrador puede crear roles y asignarles las operaciones que tendran permitido',
-  ]},
-  {title: 'Arquitectura limpia',
-  image: CleanImage,
-  linkGithub: 'https://github.com/lezcanodev/Typescript-Clean-Architecture',
-  shortDescription:'Mi intento de implemention de un arquitectura limpia',
-  tecnologyNames: ['Typescript'],
-  features: [
-    'Aplicacion de los principios SOLID',
-    'App desarrollada con un enfoque que los frameworks, base de datos, etc son solo detalles',
-    'Las capas de aplicacion y dominio son encargadas de la logica de negocio y casos de uso',
-    'Los casos de uso solo dependen de abstraciones para evitar acoplamiento a una implementacion',
-   ]},
-   {title: 'Simulador web banking',
-   image: BankingImage,
-   linkGithub: 'https://github.com/lezcanodev/SimuladorWebBanking---POO',
-   shortDescription:'Proyecto de universidad',
-   tecnologyNames: ['Java'],
-   features: [
-     'El objetivo de la app es el diseño y analisis orientado a objetos',
-     `Para realizar la app primero se realizo un analisis el cual se represento con un diagramas de caso de uso, luego
-      se realizo un diagrama orientado a objetos antes del desarrollo de la app`,
-    ]},
-    {title: 'Menu',
-    image: MenuImage,
-    linkGithub: 'https://github.com/lezcanodev/Restaurante',
-    shortDescription:'Proyecto frontend',
-    tecnologyNames: ['Html5', 'Tailwinds', 'react'],
-    features: [
-      'App hecha mayormente con html5 y tailwinds, react solo se utiliza en la seccion de comidas',
-     ]},
+ }
 ]
 
 export default function SectionProjects({id}: {id: string}){
@@ -117,7 +128,7 @@ export default function SectionProjects({id}: {id: string}){
       }
     }
 
-    return <SectionPortafolio fullWidth={true} id={id} >
+    return <SectionPortafolio fullWidth={true} id={id} css={css`background-color: red; `} >
                 <SectionPortafolio.Header>
                     Proyectos
                 </SectionPortafolio.Header>
@@ -132,7 +143,7 @@ export default function SectionProjects({id}: {id: string}){
                   & > div{
                     cursor: pointer;
                     width: 85px;
-                    padding: 4px 10px;
+                    padding: 4px 5px;
                     color: #3b82f6;
                     border: 1px solid #eaeaea66;
                     background-color: #eaeaea;

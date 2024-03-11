@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
 import SectionPortafolio from './section';
 import GithubIcon from  '../assets/github.svg';
-import LinkedinIcon from  '../assets/linkedin.svg';
+//import LinkedinIcon from  '../assets/linkedin.svg';
 import CV from '../assets/cv.pdf';
 
 export default function SectionHome({id}: {id: string}){
